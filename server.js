@@ -1,9 +1,9 @@
 const express = require("express");
 const db = require("./config/db");
 
-const Admin = require("./models/Admin");
-const Queue = require("./models/Queue");
-const Student = require("./models/Student");
+const AdminModel = require("./models/Admin");
+const QueueModel = require("./models/Queue");
+const StudentModel = require("./models/Student");
 
 const app = express();
 
@@ -15,9 +15,9 @@ db.authenticate()
     console.error("Unable to connect to the database:", err);
   });
 
-Admin.hasMany(Queue);
-Queue.belongsTo(Admin);
-Student.belongsTo(Queue);
+AdminModel.hasMany(QueueModel);
+QueueModel.belongsTo(AdminModel);
+StudentModel.belongsTo(QueueModel);
 
 db.sync();
 
